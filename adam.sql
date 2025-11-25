@@ -31,6 +31,19 @@ SELECT course_title, capacity,
 	END AS class_size
 FROM courses;
 
+# Question 6: Classify students by seniority based on intake year
+
+SELECT 
+    student_id, 
+    intake_year,
+    CASE 
+        WHEN intake_year = 2023 THEN 'Senior (Year 3)'
+        WHEN intake_year = 2024 THEN 'Junior (Year 2)'
+        WHEN intake_year = 2025 THEN 'Freshman (Year 1)'
+        ELSE 'Unknown'
+    END AS student_year_group
+FROM students;
+
 
 
 
