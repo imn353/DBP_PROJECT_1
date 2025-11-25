@@ -31,7 +31,7 @@ SELECT course_title, capacity,
 	END AS class_size
 FROM courses;
 
-# Question 6: Classify students by seniority based on intake year
+# Q6 - Classify students by seniority based on intake year
 
 SELECT 
     student_id, 
