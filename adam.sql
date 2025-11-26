@@ -34,7 +34,6 @@ FROM students
 WHERE LENGTH(CONCAT(student_fname, ' ', student_lname)) > 12;
 
 -- Calculate 80% of capacity for courses
-
 SELECT course_code, capacity, 
 ROUND(capacity * 0.8, 0) AS warning_level_rounded,
 TRUNCATE(capacity * 0.8, 0) AS warning_level_truncated
