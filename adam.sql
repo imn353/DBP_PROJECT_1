@@ -44,7 +44,6 @@ SELECT ROUND(AVG(capacity), 2) AS average_class_capacity
 FROM courses;
 
 # Question 6
-
 -- Categorize course based on the capacity of class
 SELECT course_title, capacity,
 	CASE
