@@ -74,8 +74,7 @@ LEFT OUTER JOIN students s
 ON r.student_id = s.student_id;
 
 -- SELF : List of courses with its prerequisite courses
-SELECT 
-    c.course_id, c.course_title, p.course_id, p.course_title
+SELECT c.course_id, c.course_title, p.course_id, p.course_title
 FROM courses c
 LEFT JOIN courses p
     ON c.prerequisite_id = p.course_id;
