@@ -1,7 +1,7 @@
 USE course_registration;
 
 # Question 4
--- Count of lecturers for each departments which exceeds 2
+-- Lecturers for each departments which exceeds 2
 SELECT department, COUNT(lecturer_id) AS total_lecturer
 FROM lecturers
 GROUP BY department
@@ -24,7 +24,7 @@ GROUP BY course_id
 HAVING total_prereqs > 1;
 
 # Question 5 
--- Students uppercased full name intake year
+-- List students with only short name
 SELECT 
     student_id, 
     UPPER(CONCAT(student_fname, ' ', student_lname)) AS full_name, 
