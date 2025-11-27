@@ -8,20 +8,16 @@ GROUP BY department
 HAVING total_lecturer > 2;
 
 -- Students total registration for each course
-SELECT 
-    course_id, 
-    COUNT(student_id) AS total_registered
+SELECT course_id, COUNT(student_id) AS total_registered
 FROM registrations
 GROUP BY course_id
 HAVING total_registered > 1;
 
--- Courses with more than 1 prerequisites
-SELECT 
-    course_id, 
-    COUNT(prereq_course_id) AS total_prereqs
-FROM prerequisites
-GROUP BY course_id
-HAVING total_prereqs > 1;
+-- Identify students who have registered for more than 2 courses
+SELECT student_id, COUNT(course_id) AS total_courses_taken
+FROM registrations
+GROUP BY student_id
+HAVING total_courses_taken > 2;
 
 # Question 5 
 -- List students with only short name
@@ -33,7 +29,7 @@ SELECT
 FROM students
 WHERE LENGTH(CONCAT(student_fname, ' ', student_lname)) > 12;
 
--- Calculate 80% of capacity for courses
+-- Monitor capacity of class for each courses
 SELECT course_code, capacity, 
 ROUND(capacity * 0.8, 0) AS warning_level_rounded,
 TRUNCATE(capacity * 0.8, 0) AS warning_level_truncated
