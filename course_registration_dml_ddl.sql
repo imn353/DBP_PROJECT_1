@@ -13,7 +13,7 @@ CREATE TABLE students (
     student_lname VARCHAR(20) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     program ENUM('Data Engineering', 'Bioinformatics', 'Software Engineering', 'Networks and Security', 'Graphics and Multimedia') NOT NULL,
-    intake_year INT NOT NULL CHECK (intake_year BETWEEN 2000 AND 2050),
+    intake_year INT NOT NULL,
     status VARCHAR(20) DEFAULT 'ACTIVE'
 );
 
@@ -31,8 +31,8 @@ CREATE TABLE courses (
     course_id VARCHAR(8) PRIMARY KEY,
     course_code VARCHAR(20) UNIQUE NOT NULL,
     course_title VARCHAR(150) NOT NULL,
-    credit_hours INT NOT NULL,
-    capacity INT NOT NULL DEFAULT 40,
+    credit_hours INT NOT NULL CHECK(credit_hours > 0),
+    capacity INT NOT NULL DEFAULT 40 CHECK(capacity > 0),
     lecturer_id VARCHAR(20),
     prerequisite_id VARCHAR(8) DEFAULT NULL,
     course_desc TEXT,
