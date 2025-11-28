@@ -1,19 +1,17 @@
 USE course_registration;
 
 # Part C
-# Question 1
+# Question 1 - Filtering
 
 -- Find students from the 2023 intake who are in Software Engineering
 SELECT student_id, student_fname, student_lname, program
 FROM students
-WHERE intake_year = 2023
-  AND program = 'Software Engineering';
+WHERE intake_year = 2023 AND program = 'Software Engineering';
 
 -- Students who are in either Data Engineering OR Bioinformatics
 SELECT student_id, student_fname, student_lname, program
 FROM students
-WHERE program = 'Data Engineering'
-   OR program = 'Bioinformatics';
+WHERE program = 'Data Engineering' OR program = 'Bioinformatics';
 
 -- Courses that are NOT taught by the Applied Computing department
 SELECT course_code, course_title, lecturer_id
@@ -39,12 +37,7 @@ SELECT course_id, course_code, course_title
 FROM courses
 WHERE prerequisite_id IS NULL;
 
-# Question 2
-
--- List all courses sorted by credit hours (ascending)
-SELECT course_code, course_title, credit_hours
-FROM courses
-ORDER BY credit_hours ASC;
+# Question 2 - Sorting
 
 -- Most recent registrations first
 SELECT reg_id, student_id, course_id, reg_date
@@ -57,7 +50,7 @@ FROM students
 ORDER BY intake_year DESC
 LIMIT 5;
 
-# Question 3
+# Question 3 - Aggregation
 
 -- Total number of students in each program
 SELECT program, COUNT(*) AS total_students
@@ -77,11 +70,9 @@ FROM courses;
 -- Course with the highest capacity
 SELECT course_code, course_title, capacity
 FROM courses
-ORDER BY capacity DESC
-LIMIT 1;
+WHERE capacity = (SELECT MAX(capacity) FROM courses);
 
 -- Course with the smallest number of credit hours
 SELECT course_code, course_title, credit_hours
 FROM courses
-ORDER BY credit_hours ASC
-LIMIT 1;
+WHERE credit_hours = (SELECT MIN(credit_hours) FROM courses);
